@@ -9,6 +9,9 @@ using static System.Net.WebRequestMethods;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Класс студента для группы.
+    /// </summary>
     internal class Student
     {
         private string name;
@@ -51,21 +54,81 @@ namespace DZClasses
              "+380929398018","+380929398019","+380929398020","+380929398021","+380929398022","+380929398023","+380929398024","+380929398025","+380929398026","+380929398027","+380929398028","+380929398029","+380929398030","+380929398031","+380929398032","+380929398033","+380929398034"
         };
 
+        /// <summary>
+        /// Добавить оценку за зачёт.
+        /// </summary>
+        /// <param name="number">Оценка зачёта</param>
         public void AddOffSet(int number)
         {
-            this.OffSet.Add(number);
+            try
+            {
+                if (number >= 1 && number <= 12)
+                {
+                    this.OffSet.Add(number);
+                }
+                else
+                {
+                    throw new Exception("Оценка не может быть меньше одного или больше двенадцати!");
+
+                }
+            }
+            catch (Exception exe)
+            {
+                Console.WriteLine($"Ошибка: {exe.Message}");
+            }
         }
 
+        /// <summary>
+        /// Добавить оценку за ЭКЗАМЕН.
+        /// </summary>
+        /// <param name="number">Оценка экзамена</param>
         public void AddExams(int number)
         {
-            this.Exams.Add(number);
+            try
+            {
+                if (number >= 1 && number <= 12)
+                {
+                    this.Exams.Add(number);
+                }
+                else
+                {
+                    throw new Exception("Оценка не может быть меньше одного или больше двенадцати!");
+
+                }
+            }
+            catch (Exception exe)
+            {
+                Console.WriteLine($"Ошибка: {exe.Message}");
+            }
         }
 
+        /// <summary>
+        /// Добавить оценку за Курсовую работу
+        /// </summary>
+        /// <param name="number">Оценка Курсовой работы</param>
         public void AddTermPapers(int number)
         {
-            this.TermPapers.Add(number);
+            try
+            {
+                if (number >= 1 && number <= 12)
+                {
+                    this.TermPapers.Add(number);
+                }
+                else
+                {
+                    throw new Exception("Оценка не может быть меньше одного или больше двенадцати!");
+
+                }
+            }
+            catch (Exception exe)
+            {
+                Console.WriteLine($"Ошибка: {exe.Message}");
+            }
         }
 
+        /// <summary>
+        /// Конструктор без параметров с генерацией рандомного студента.
+        /// </summary>
         public Student()
         {
             Random rnd = new Random();
@@ -131,6 +194,13 @@ namespace DZClasses
             }
         }
 
+        /// <summary>
+        /// Конструктор с параметрами имени, фамилии, отчества и возраста.
+        /// </summary>
+        /// <param name="name">Имя студента</param>
+        /// <param name="surname">Фамилия студента</param>
+        /// <param name="lastname">Отчество студента</param>
+        /// <param name="age">Возраст студента</param>
         public Student(string name, string surname, string lastname, DateTime age)
         {
             Random rnd = new Random();
@@ -144,6 +214,15 @@ namespace DZClasses
             System.Threading.Thread.Sleep(1);
         }
 
+        /// <summary>
+        /// Конструктор со всеми параметрами
+        /// </summary>
+        /// <param name="name">Имя студента</param>
+        /// <param name="surname">Фамилия студента</param>
+        /// <param name="lastname">Отчество студента</param>
+        /// <param name="age">Возраст студента</param>
+        /// <param name="HomeAddress">Адресс студента</param>
+        /// <param name="NumberOfPhone">Номер телефона студента</param>
         public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone)
         {
             SetName(name);
@@ -155,37 +234,64 @@ namespace DZClasses
         }
 
 
-
+        /// <summary>
+        /// Задаёт имя стдента
+        /// </summary>
+        /// <param name="name">Новое имя</param>
         public void SetName(string name)
         {
             this.name = name;
         }
 
+        /// <summary>
+        /// Возращает имя студента
+        /// </summary>
+        /// <returns>Имя студента</returns>
         public string GetName()
         {
             return name;
         }
 
+        /// <summary>
+        /// Задаёт фамилию стдента
+        /// </summary>
+        /// <param name="name">Новоя фамилия</param>
         public void SetSurname(string surname)
         {
             this.surname = surname;
         }
 
+        /// <summary>
+        /// Возращает фамилию студента
+        /// </summary>
+        /// <returns>Фамилия студента</returns>
         public string GetSurname()
         {
             return surname;
         }
 
+        /// <summary>
+        /// Задаёт отчество стдента
+        /// </summary>
+        /// <param name="name">Новое отчество</param>
         public void SetLastname(string lastname)
         {
             this.lastname = lastname;
         }
 
+        /// <summary>
+        /// Возращает отчество студента
+        /// </summary>
+        /// <returns>Отчество студента</returns>
         public string GetLastname()
         {
             return lastname;
         }
 
+        /// <summary>
+        /// Задаёт Возраст стдента
+        /// </summary>
+        /// <param name="name">Новый возраст</param>
         public void SetAge(DateTime age)
         {
             this.age = age.AddDays(20 - 1);
@@ -193,55 +299,85 @@ namespace DZClasses
             this.age = age.AddYears(2003 - 1);
         }
 
+        /// <summary>
+        /// Возращает возраст студента
+        /// </summary>
+        /// <returns>Возраст студента</returns>
         public DateTime GetAge()
         {
             return age;
         }
 
+        /// <summary>
+        /// Задаёт адресс стдента
+        /// </summary>
+        /// <param name="name">Новый адресс</param>
         public void SetHomeAddress(string HomeAddress)
         {
             this.HomeAddress = HomeAddress;
         }
 
+        /// <summary>
+        /// Возращает Адресс студента
+        /// </summary>
+        /// <returns>Адресс студента</returns>
         public string GetHomeAddress()
         {
             return HomeAddress;
         }
 
+        /// <summary>
+        /// Задаёт номер телефона стдента
+        /// </summary>
+        /// <param name="name">Новый номер телефона</param>
         public void SetNumberOfPhone(string NumberOfPhone)
         {
             this.NumberOfPhone = NumberOfPhone;
         }
 
+        /// <summary>
+        /// Возращает номер телефона студента
+        /// </summary>
+        /// <returns>Номер телефона студента</returns>
         public string GetNumberOfPhone()
         {
             return NumberOfPhone;
         }
 
+        /// <summary>
+        /// Выводит в консоль информацию о студенте.
+        /// </summary>
         public void Print()
         {
-            Console.WriteLine("Name : " + GetName());
-            Console.WriteLine("SurName : " + GetSurname());
-            Console.WriteLine("LastName : " + GetLastname());
-            Console.WriteLine("Date of Birthday : " + GetAge());
-            Console.WriteLine("Home Address : " + GetHomeAddress());
-            Console.WriteLine("Phone Number : " + GetNumberOfPhone());
-            Console.Write("\nЗачёты : ");
-            for (int i = 0; i < OffSet.Count; i++)
+            try
             {
-                Console.Write(OffSet[i] + ", ");
+                Console.WriteLine("Name : " + GetName());
+                Console.WriteLine("SurName : " + GetSurname());
+                Console.WriteLine("LastName : " + GetLastname());
+                Console.WriteLine("Date of Birthday : " + GetAge());
+                Console.WriteLine("Home Address : " + GetHomeAddress());
+                Console.WriteLine("Phone Number : " + GetNumberOfPhone());
+                Console.Write("\nЗачёты : ");
+                for (int i = 0; i < OffSet.Count; i++)
+                {
+                    Console.Write(OffSet[i] + ", ");
+                }
+                Console.Write("\nЭкзамены : ");
+                for (int i = 0; i < Exams.Count; i++)
+                {
+                    Console.Write(Exams[i] + ", ");
+                }
+                Console.Write("\nКурсовые работы : ");
+                for (int i = 0; i < TermPapers.Count; i++)
+                {
+                    Console.Write(TermPapers[i] + ", ");
+                }
+                Console.WriteLine("\n\n");
             }
-            Console.Write("\nЭкзамены : ");
-            for (int i = 0; i < Exams.Count; i++)
+            catch (Exception exe)
             {
-                Console.Write(Exams[i] + ", ");
+                Console.WriteLine(exe.Message);
             }
-            Console.Write("\nКурсовые работы : ");
-            for (int i = 0; i < TermPapers.Count; i++)
-            {
-                Console.Write(TermPapers[i] + ", ");
-            }
-            Console.WriteLine("\n\n");
         }
 
 

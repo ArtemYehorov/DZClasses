@@ -8,12 +8,18 @@ using System.Xml.Linq;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Это группа для массива студентов.
+    /// </summary>
     internal class Group
     {
         private ArrayList group = new ArrayList();
         private string NameOfCourse;
         private string Groupspecialization;
         private string NumberOfCourse;
+        /// <summary>
+        /// Конструктор без параметров.
+        /// </summary>
         public Group()
         {
             for (int i = 0; i < 12; i++)
@@ -25,6 +31,10 @@ namespace DZClasses
             Groupspecialization = "Разработка програмного обеспечения";
         }
 
+        /// <summary>
+        /// Конструктор копировани. Создаёт группу, точную копию другой группы.
+        /// </summary>
+        /// <param name="g">Другая группа</param>
         public Group(Group g)
         {
             this.group = g.group;
@@ -33,6 +43,10 @@ namespace DZClasses
             this.GroupSpecialization = g.GroupSpecialization;
         }
 
+        /// <summary>
+        /// Конструктор, создаёт группу с указанным количеством студентов.
+        /// </summary>
+        /// <param name="count">Количество студентов</param>
         public Group(int count)
         {
             for (int i = 0; i < count; i++)
@@ -44,6 +58,10 @@ namespace DZClasses
             Groupspecialization = "Разработка програмного обеспечения";
         }
 
+        /// <summary>
+        /// конструктор, создаёт группу по указанному массиву студентов.
+        /// </summary>
+        /// <param name="group">Массив студентов</param>
         public Group(ArrayList group)
         {
             for (int i = 0; i < group.Count; i++)
@@ -55,24 +73,38 @@ namespace DZClasses
             Groupspecialization = "Разработка програмного обеспечения";
         }
 
+        /// <summary>
+        /// Свойство Названия Курса.
+        /// </summary>
         public string NameOFCourse
         {
             get { return NameOfCourse; }
             set { NameOfCourse = value; }
         }
 
+        /// <summary>
+        /// Свойство Специализации Группы.
+        /// </summary>
         public string GroupSpecialization
         {
             get { return Groupspecialization; }
             set { Groupspecialization = value; }
         }
 
+        /// <summary>
+        /// Свойство Номера Курса.
+        /// </summary>
         public string NumberOFCourse
         {
             get { return NumberOfCourse; }
             set { NumberOfCourse = value; }
         }
 
+        /// <summary>
+        /// Удаление студента по Именни и Фамилиии
+        /// </summary>
+        /// <param name="name">Имя студента</param>
+        /// <param name="surname">Фамилия студента</param>
         public void RemoveStudent(string name, string surname)
         {
             for (int i = 0; i < group.Count; i++)
@@ -84,6 +116,12 @@ namespace DZClasses
             }
         }
 
+        /// <summary>
+        /// Перенос студента из одной группы в другую, по имени и фамилии.
+        /// </summary>
+        /// <param name="g">Другая группа</param>
+        /// <param name="name">Имя студента</param>
+        /// <param name="surname">Фамилия студента</param>
         public void StudentTransfer(Group g, string name, string surname)
         {
             for (int i = 0; i < group.Count; i++)
@@ -96,6 +134,9 @@ namespace DZClasses
             }
         }
 
+        /// <summary>
+        /// Вывод в консоль информации о группе.
+        /// </summary>
         public void Print()
         {
             Console.WriteLine(NameOFCourse);
