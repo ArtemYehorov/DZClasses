@@ -7,6 +7,13 @@ using System.Text;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
+class LackOfGradesException : ApplicationException
+{
+    public LackOfGradesException() { }
+    public LackOfGradesException(string message) : base(message) { }
+}
+
+
 namespace DZClasses
 {
     /// <summary>
@@ -255,7 +262,7 @@ namespace DZClasses
         /// <summary>
         /// Задаёт фамилию стдента
         /// </summary>
-        /// <param name="name">Новоя фамилия</param>
+        /// <param name="surname">Новоя фамилия</param>
         public void SetSurname(string surname)
         {
             this.surname = surname;
@@ -273,7 +280,7 @@ namespace DZClasses
         /// <summary>
         /// Задаёт отчество стдента
         /// </summary>
-        /// <param name="name">Новое отчество</param>
+        /// <param name="lastname">Новое отчество</param>
         public void SetLastname(string lastname)
         {
             this.lastname = lastname;
@@ -291,7 +298,7 @@ namespace DZClasses
         /// <summary>
         /// Задаёт Возраст стдента
         /// </summary>
-        /// <param name="name">Новый возраст</param>
+        /// <param name="age">Новый возраст</param>
         public void SetAge(DateTime age)
         {
             this.age = age.AddDays(20 - 1);
@@ -311,7 +318,7 @@ namespace DZClasses
         /// <summary>
         /// Задаёт адресс стдента
         /// </summary>
-        /// <param name="name">Новый адресс</param>
+        /// <param name="HomeAddress">Новый адресс</param>
         public void SetHomeAddress(string HomeAddress)
         {
             this.HomeAddress = HomeAddress;
@@ -329,7 +336,7 @@ namespace DZClasses
         /// <summary>
         /// Задаёт номер телефона стдента
         /// </summary>
-        /// <param name="name">Новый номер телефона</param>
+        /// <param name="NumberOfPhone">Новый номер телефона</param>
         public void SetNumberOfPhone(string NumberOfPhone)
         {
             this.NumberOfPhone = NumberOfPhone;
@@ -357,20 +364,48 @@ namespace DZClasses
                 Console.WriteLine("Date of Birthday : " + GetAge());
                 Console.WriteLine("Home Address : " + GetHomeAddress());
                 Console.WriteLine("Phone Number : " + GetNumberOfPhone());
-                Console.Write("\nЗачёты : ");
-                for (int i = 0; i < OffSet.Count; i++)
+                Exception OET = new LackOfGradesException("Оценки за зачёты отсутствуют!");
+                if (OffSet.Count == 0 && Exams.Count == 0 && TermPapers.Count == 0)
                 {
-                    Console.Write(OffSet[i] + ", ");
+                    throw new LackOfGradesException("Оценки отсутвуют!\n");
                 }
-                Console.Write("\nЭкзамены : ");
-                for (int i = 0; i < Exams.Count; i++)
+                if (OffSet.Count == 0)
                 {
-                    Console.Write(Exams[i] + ", ");
+                    Console.WriteLine(OET);
                 }
-                Console.Write("\nКурсовые работы : ");
-                for (int i = 0; i < TermPapers.Count; i++)
+                else
                 {
-                    Console.Write(TermPapers[i] + ", ");
+                    Console.Write("\nЗачёты : ");
+                    for (int i = 0; i < OffSet.Count; i++)
+                    {
+                        Console.Write(OffSet[i] + ", ");
+                    }
+                }
+                if (Exams.Count == 0)
+                {
+                    OET = new LackOfGradesException("Оценки за экзамены отсутствуют!");
+                    Console.WriteLine(OET);
+                }
+                else
+                {
+                    Console.Write("\nЭкзамены : ");
+                    for (int i = 0; i < Exams.Count; i++)
+                    {
+                        Console.Write(Exams[i] + ", ");
+                    }
+                }
+                if (TermPapers.Count == 0)
+                {
+                    OET = new LackOfGradesException("Оценки за курсовые работы отсутствуют!");
+                    Console.WriteLine(OET);
+                }
+                else
+                {
+                    Console.Write("\nКурсовые работы : ");
+                    for (int i = 0; i < TermPapers.Count; i++)
+                    {
+                        Console.Write(TermPapers[i] + ", ");
+                    }
                 }
                 Console.WriteLine("\n\n");
             }
