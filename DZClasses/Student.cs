@@ -171,17 +171,17 @@ namespace DZClasses
                     age = age.AddMonths(rnd.Next(1, 13));
                     age = age.AddYears(rnd.Next(1970, 2004));
 
-                    for (int i = 0; i < 12; i++)
+                    for (int i = 0; i < rnd.Next(10,15); i++)
                     {
                         OffSet.Add(rnd.Next(1, 13));
                     }
 
-                    for (int i = 0; i < 12; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         Exams.Add(rnd.Next(1, 13));
                     }
 
-                    for (int i = 0; i < 12; i++)
+                    for (int i = 0; i < 6; i++)
                     {
                         TermPapers.Add(rnd.Next(1, 13));
                     }
@@ -215,7 +215,7 @@ namespace DZClasses
                     age = age.AddMonths(rnd.Next(1, 13));
                     age = age.AddYears(rnd.Next(1970, 2004));
 
-                    for (int i = 0; i < 12; i++)
+                    for (int i = 0; i < rnd.Next(10, 15); i++)
                     {
                         OffSet.Add(rnd.Next(1, 13));
                     }

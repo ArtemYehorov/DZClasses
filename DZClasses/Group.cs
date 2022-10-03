@@ -145,7 +145,7 @@ namespace DZClasses
             Console.WriteLine();
             for (int i = 0; i < group.Count; i++)
             {
-                Console.Write(i+1 + " ");
+                Console.Write(i+1 + "# ");
                 (group[i] as Student).Print();
             }
         }
