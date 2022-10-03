@@ -426,6 +426,7 @@ namespace DZClasses
                     {
                         Console.Write(OffSet[i] + ", ");
                     }
+                    Console.Write(this.GetAverageRate());
                 }
                 if (Exams.Count == 0)
                 {
