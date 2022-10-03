@@ -148,12 +148,16 @@ namespace DZClasses
                 {
                     int nMIndex = rnd.Next(11);
                     System.Threading.Thread.Sleep(1);
+
                     int sMIndex = rnd.Next(17);
                     System.Threading.Thread.Sleep(1);
+
                     int lMIndex = rnd.Next(11);
                     System.Threading.Thread.Sleep(1);
+
                     int MAddressIndex = rnd.Next(10);
                     System.Threading.Thread.Sleep(3);
+
                     int MNumberIndex = rnd.Next(23);
                     System.Threading.Thread.Sleep(3);
 
@@ -162,9 +166,27 @@ namespace DZClasses
                     SetLastname(LastnameList[lMIndex]);
                     SetHomeAddress(AddressList[MAddressIndex]);
                     SetNumberOfPhone(NumberList[MNumberIndex]);
+
                     age = age.AddDays(rnd.Next(1, 31));
                     age = age.AddMonths(rnd.Next(1, 13));
                     age = age.AddYears(rnd.Next(1970, 2004));
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        OffSet.Add(rnd.Next(1, 13));
+                    }
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Exams.Add(rnd.Next(1, 13));
+                    }
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        TermPapers.Add(rnd.Next(1, 13));
+                    }
+
+
                 }
                 else if (gender == 1)
                 {
@@ -192,6 +214,21 @@ namespace DZClasses
                     age = age.AddDays(rnd.Next(1, 31));
                     age = age.AddMonths(rnd.Next(1, 13));
                     age = age.AddYears(rnd.Next(1970, 2004));
+
+                    for (int i = 0; i < 12; i++)
+                    {
+                        OffSet.Add(rnd.Next(1, 13));
+                    }
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        Exams.Add(rnd.Next(1, 13));
+                    }
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        TermPapers.Add(rnd.Next(1, 13));
+                    }
                 }
 
             }
@@ -240,6 +277,15 @@ namespace DZClasses
             SetNumberOfPhone(NumberOfPhone);
         }
 
+        public double GetAverageRate()
+        {
+            double result = 0;
+            for (int i = 0; i < OffSet.Count; i++)
+            {
+                result += (int)OffSet[i];
+            }
+            return result / OffSet.Count;
+        }
 
         /// <summary>
         /// Задаёт имя стдента

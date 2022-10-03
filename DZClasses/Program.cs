@@ -10,11 +10,12 @@ namespace DZClasses
     {
         static void Main()
         {
-
-
             Group g = new Group();
             g.Print();
             Console.WriteLine();
+            g.ExpulsionOfFailingStudent();
+            Console.WriteLine();
+            g.Print();
             Console.ReadLine();
         }
     }

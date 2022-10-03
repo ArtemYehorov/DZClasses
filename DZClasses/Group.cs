@@ -22,7 +22,7 @@ namespace DZClasses
         /// </summary>
         public Group()
         {
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 11; i++)
             {
                 group.Add(new Student());
             }
@@ -142,7 +142,8 @@ namespace DZClasses
             Console.WriteLine(NameOFCourse);
             Console.WriteLine(NumberOFCourse);
             Console.WriteLine(Groupspecialization);
-            for (int i = 0; i < 12; i++)
+            Console.WriteLine();
+            for (int i = 0; i < group.Count; i++)
             {
                 Console.Write(i+1 + " ");
                 (group[i] as Student).Print();
@@ -154,9 +155,25 @@ namespace DZClasses
 
         //}
 
-       //public void ExpulsionOfFailingStudent()
-       //{
+        public Student ExpulsionOfFailingStudent()
+        {
+            // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл
+            double min_average = (group[0] as Student).GetAverageRate();
+            int current_index = 0; // на каком номере студента из группы мы находимся сейчас (перебор начинается с начала группы)
+            Student bad = (group[0] as Student); // ссылка на студента у которого средний балл - минимальный
+            for (int i = 0; i < group.Count; i++)
+            {
+                double current_avg = (group[i] as Student).GetAverageRate();
+                if (current_avg < min_average)
+                {
+                    min_average = current_avg;
+                    bad = (group[i] as Student);
+                }
+                current_index++;
+            }
 
-       //}
+            group.Remove(bad);
+            return bad;
+        }
     }
 }
