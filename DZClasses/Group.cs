@@ -17,14 +17,85 @@ namespace DZClasses
         private string NameOfCourse;
         private string Groupspecialization;
         private string NumberOfCourse;
+
+        public Student this[int index]
+        {
+            get { return group[index] as Student; }
+            set { group[index] = value; }
+        }
+
         /// <summary>
-        /// Конструктор без параметров.
+        /// Конструктор без параметров группы без оценок.
         /// </summary>
         public Group()
         {
             for (int i = 0; i < 11; i++)
             {
                 group.Add(new Student());
+            }
+            NameOFCourse = "PU111";
+            NumberOFCourse = "111";
+            Groupspecialization = "Разработка програмного обеспечения";
+        }
+
+        /// <summary>
+        /// Конструктор c параметром группы с оценками.
+        /// </summary>
+        public Group(bool t)
+        {
+            Random random = new Random();
+            for (int i = 0; i < 11; i++)
+            {
+                int AP = random.Next(0, 3);
+                System.Threading.Thread.Sleep(1);
+                if (AP == 0)
+                {
+                    group.Add(new BadStudent());
+                }
+                else if (AP == 1)
+                {
+                    group.Add(new AverageStudent());
+                }
+                else if (AP == 2)
+                {
+                    group.Add(new GoodStudent());
+                }
+                else
+                {
+                    group.Add(new Student());
+                }
+            }
+            NameOFCourse = "PU111";
+            NumberOFCourse = "111";
+            Groupspecialization = "Разработка програмного обеспечения";
+        }
+
+        /// <summary>
+        /// Конструктор c параметрами группы int - количество студентов, bool - с оценками.
+        /// </summary>
+        public Group(bool t,int count)
+        {
+            Random random = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                int AP = random.Next(0, 3);
+                System.Threading.Thread.Sleep(1);
+                if (AP == 0)
+                {
+                    group.Add(new BadStudent());
+                }
+                else if (AP == 1)
+                {
+                    group.Add(new AverageStudent());
+                }
+                else if (AP == 2)
+                {
+                    group.Add(new GoodStudent());
+                }
+                else
+                {
+                    group.Add(new Student());
+                }
             }
             NameOFCourse = "PU111";
             NumberOFCourse = "111";
@@ -109,11 +180,16 @@ namespace DZClasses
         {
             for (int i = 0; i < group.Count; i++)
             {
-                if ((group[i] as Student).GetName() == name && (group[i] as Student).GetSurname() == surname)
+                if ((group[i] as Student).Name == name && (group[i] as Student).Surname == surname)
                 {
                     group.Remove(i);
                 }
             }
+        }
+
+        public void AddStudent(Student pe)
+        {
+            group.Add(pe);
         }
 
         /// <summary>
@@ -126,7 +202,7 @@ namespace DZClasses
         {
             for (int i = 0; i < group.Count; i++)
             {
-                if ((group[i] as Student).GetName() == name && (group[i] as Student).GetSurname() == surname)
+                if ((group[i] as Student).Name == name && (group[i] as Student).Surname == surname)
                 {
                     g.group.Add(this.group[i]);
                     this.group.Remove(i);
