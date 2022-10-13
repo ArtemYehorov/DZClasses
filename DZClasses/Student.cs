@@ -342,7 +342,7 @@ namespace DZClasses
                     {
                         Console.Write(OffSet[i] + ", ");
                     }
-                    Console.Write("Средний был за зачёты: " + this.GetAverageRate());
+                    Console.Write("Средний был за зачёты: " + this.GetAverageRateOffSet());
                 }
                 if (Exams.Count == 0)
                 {

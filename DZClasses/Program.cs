@@ -23,6 +23,7 @@ namespace DZClasses
             Student a = new BadStudent();
             Student e = new AverageStudent();
             Student y = new GoodStudent();
+           
             g.AddStudent(q);
             g.AddStudent(y);
             g.AddStudent(e);
@@ -33,6 +34,18 @@ namespace DZClasses
             Console.WriteLine(e["OffSet", 2]);
             g[5] = a;
             Console.WriteLine();
+
+            if (y > e)
+            {
+                Console.WriteLine("Студент y");
+                y.Print();
+            }
+            else
+            {
+                Console.WriteLine("Студент е");
+                e.Print();
+            }
+
             Console.ReadLine();
         }
     }

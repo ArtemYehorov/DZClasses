@@ -248,12 +248,12 @@ namespace DZClasses
         public Student ExpulsionOfFailingStudent()
         {
             // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл
-            double min_average = (group[0] as Student).GetAverageRate();
+            double min_average = (group[0] as Student).GetAverageRateOffSet();
             int current_index = 0; // на каком номере студента из группы мы находимся сейчас (перебор начинается с начала группы)
             Student bad = (group[0] as Student); // ссылка на студента у которого средний балл - минимальный
             for (int i = 0; i < group.Count; i++)
             {
-                double current_avg = (group[i] as Student).GetAverageRate();
+                double current_avg = (group[i] as Student).GetAverageRateOffSet();
                 if (current_avg < min_average)
                 {
                     min_average = current_avg;
