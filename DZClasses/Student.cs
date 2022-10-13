@@ -25,6 +25,53 @@ namespace DZClasses
         protected ArrayList Exams = new ArrayList();
         protected ArrayList TermPapers = new ArrayList();
 
+        public static bool operator ==(Student obj1, Student obj2)
+        {
+            if (obj1.GetAverageRateOffSet() == obj2.GetAverageRateOffSet() && obj1.Name == obj2.Name)
+                return true;
+            return false;
+        }
+
+        public static bool operator !=(Student obj1, Student obj2)
+        {
+            if (obj1.GetAverageRateOffSet() != obj2.GetAverageRateOffSet())
+                return true;
+            return false;
+        }
+
+        public static bool operator false(Student obj)
+        {
+            if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
+                return true;
+            return false;
+        }
+
+        // Обязательно перегружаем оператор true
+        public static bool operator true(Student obj)
+        {
+            if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
+                return true;
+            return false;
+        }
+
+        public static bool operator >(Student obj1, Student obj2)
+        {
+            if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool operator <(Student obj1, Student obj2)
+        {
+            if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
+            {
+                return false;
+            }
+            return true;
+        }
+
         public int this[string r, int t]
         {
             get 
@@ -244,7 +291,7 @@ namespace DZClasses
         /// <param name="NumberOfPhone">Номер телефона студента</param>
         public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone) : base(name, surname, lastname, age, HomeAddress, NumberOfPhone) {}
 
-        public double GetAverageRate()
+        public double GetAverageRateOffSet()
         {
             double result = 0;
             for (int i = 0; i < OffSet.Count; i++)
@@ -252,6 +299,26 @@ namespace DZClasses
                 result += (int)OffSet[i];
             }
             return result / OffSet.Count;
+        }
+
+        public double GetAverageRateExams()
+        {
+            double result = 0;
+            for (int i = 0; i < Exams.Count; i++)
+            {
+                result += (int)Exams[i];
+            }
+            return result / Exams.Count;
+        }
+
+        public double GetAverageRateTermPapers()
+        {
+            double result = 0;
+            for (int i = 0; i < TermPapers.Count; i++)
+            {
+                result += (int)TermPapers[i];
+            }
+            return result / TermPapers.Count;
         }
 
         public override void Print()

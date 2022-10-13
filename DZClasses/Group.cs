@@ -18,6 +18,20 @@ namespace DZClasses
         private string Groupspecialization;
         private string NumberOfCourse;
 
+        public static bool operator ==(Group obj1, Group obj2)
+        {
+            if (obj1.group.Count == obj2.group.Count)
+                return true;
+            return false;
+        }
+
+        public static bool operator !=(Group obj1, Group obj2)
+        {
+            if (obj1.group.Count == obj2.group.Count)
+                return true;
+            return false;
+        }
+
         public Student this[int index]
         {
             get { return group[index] as Student; }
