@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
@@ -19,11 +20,28 @@ namespace DZClasses
     /// <summary>
     /// Класс студента для группы.
     /// </summary>
-    internal class Student : Person
+    internal class Student : Person, ICloneable, IComparable<Student>
     {
         protected ArrayList OffSet = new ArrayList();
         protected ArrayList Exams = new ArrayList();
         protected ArrayList TermPapers = new ArrayList();
+
+        public int CompareTo(Student some_another_student) // реализация интерфейса
+        {
+            if (this.GetAverageRateOffSet() > some_another_student.GetAverageRateOffSet()) return 1; 
+            if (this.GetAverageRateOffSet() < some_another_student.GetAverageRateOffSet()) return -1;
+            return 0; 
+        }
+
+        public Student ShallowClone() // поверхностная копия
+        {
+            return (Student)this.MemberwiseClone();
+        }
+
+        public object Clone() // пользовательская копия
+        {
+            return new Student(this.Name, this.Surname, this.Lastname, this.Age, this.HomeAddress, this.NumberOfPhone, this.OffSet, this.Exams, this.TermPapers);
+        }
 
         public static bool operator ==(Student obj1, Student obj2)
         {
@@ -280,6 +298,18 @@ namespace DZClasses
         /// <param name="age">Возраст студента</param>
         public Student(string name, string surname, string lastname, DateTime age) : base(name, surname, lastname, age) {}
 
+        public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone, ArrayList OS, ArrayList E, ArrayList TP)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Lastname = lastname;
+            this.Age = age;
+            this.HomeAddress = HomeAddress;
+            this.NumberOfPhone = NumberOfPhone;
+            this.OffSet = OS;
+            this.Exams = E;
+            this.TermPapers = TP;
+        }
         /// <summary>
         /// Конструктор со всеми параметрами
         /// </summary>

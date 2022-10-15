@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
@@ -11,13 +12,29 @@ namespace DZClasses
     /// <summary>
     /// Это группа для массива студентов.
     /// </summary>
-    internal class Group
+    internal class Group : ICloneable, IComparable<Group>
     {
         private ArrayList group = new ArrayList();
         private string NameOfCourse;
         private string Groupspecialization;
         private string NumberOfCourse;
 
+        public int CompareTo(Group some_another_group) // реализация интерфейса
+        {
+            if (this.group.Count > some_another_group.group.Count) return 1;
+            if (this.group.Count < some_another_group.group.Count) return -1;
+            return 0;
+        }
+
+        public Group ShallowClone() // поверхностная копия
+        {
+            return (Group)this.MemberwiseClone();
+        }
+
+        public object Clone() // пользовательская копия
+        {
+            return new Group(this.group,this.NameOFCourse,this.Groupspecialization,this.NumberOFCourse);
+        }
         public static bool operator ==(Group obj1, Group obj2)
         {
             if (obj1.group.Count == obj2.group.Count)
@@ -36,6 +53,14 @@ namespace DZClasses
         {
             get { return group[index] as Student; }
             set { group[index] = value; }
+        }
+
+        public Group(ArrayList g,string NameC,string Cpes,string NumberC)
+        {
+            this.group = g;
+            NameOFCourse = NameC;
+            NumberOFCourse = NumberC;
+            Groupspecialization = Cpes;
         }
 
         /// <summary>
