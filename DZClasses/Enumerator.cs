@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DZClasses
 {
-    class MyEnumerator : IEnumerator
+    class MyEnumerator
     {
         ArrayList ar; // поле, которое сможет выдать доступ к коллекции в любой части класса-перечислителя
 
