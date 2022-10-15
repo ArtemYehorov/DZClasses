@@ -13,7 +13,7 @@ namespace DZClasses
     /// <summary>
     /// Это группа для массива студентов.
     /// </summary>
-    internal class Group : ICloneable, IComparable<Group>
+    internal class Group : ICloneable, IComparable<Group>, IEnumerable
     {
         private ArrayList group = new ArrayList();
         private string NameOfCourse;
