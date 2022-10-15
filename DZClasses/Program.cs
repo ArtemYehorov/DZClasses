@@ -11,7 +11,7 @@ namespace DZClasses
     {
         static void Main()
         {
-            Group g = new Group(3);
+            Group g = new Group(true,3);
             g.Print();
             Console.WriteLine();
 
