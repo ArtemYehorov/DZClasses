@@ -232,9 +232,36 @@ namespace DZClasses
             }
         }
 
+        public void RemoveStudent(int index)
+        {
+            for (int i = 0; i < group.Count; i++)
+            {
+                if (i == index)
+                {
+                    group.RemoveAt(i);
+                }
+            }
+        }
+
+        public int ReturnCountStudents()
+        {
+            return group.Count;
+        }
+
         public void AddStudent(Student pe)
         {
             group.Add(pe);
+        }
+
+        public void AddStudent(Student pe, int index)
+        {
+            if (index < 0 || index > group.Count)
+            {
+                index = 0;
+            }
+            group.Add(pe);
+            group.Reverse(index, group.Count);
+            
         }
 
         /// <summary>
