@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Class Aspirant.
+    /// Implements the <see cref="DZClasses.Student" />
+    /// </summary>
+    /// <seealso cref="DZClasses.Student" />
     internal class Aspirant : Student
     {
         /// <summary>
@@ -16,6 +22,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство темы работы
         /// </summary>
+        /// <value>The work theme.</value>
         public string WorkTheme
         {
             get { return Worktheme; }

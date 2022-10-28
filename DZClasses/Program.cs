@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,20 @@ using System.Threading.Tasks;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     internal class Program
     {
+        /// <summary>
+        /// Delegate WorkWithGroup
+        /// </summary>
+        /// <param name="a">a.</param>
+        /// <param name="index">The index.</param>
         public delegate void WorkWithGroup(Group a, int index);
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
         static void Main()
         {
             //Group g = new Group(true, 3);

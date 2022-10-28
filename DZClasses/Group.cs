@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,27 @@ namespace DZClasses
     /// </summary>
     internal class Group : ICloneable, IComparable<Group>
     {
+        /// <summary>
+        /// The group
+        /// </summary>
         private ArrayList group = new ArrayList();
+        /// <summary>
+        /// The name of course
+        /// </summary>
         private string NameOfCourse;
+        /// <summary>
+        /// The groupspecialization
+        /// </summary>
         private string Groupspecialization;
+        /// <summary>
+        /// The number of course
+        /// </summary>
         private string NumberOfCourse;
 
         /// <summary>
         /// Инумератор
         /// </summary>
-        /// <returns></returns>
+        /// <returns>MyEnumerator.</returns>
         public MyEnumerator GetEnumerator()
         {
             return new MyEnumerator(group);
@@ -33,7 +46,7 @@ namespace DZClasses
         /// Реализация интерфейса для сортировки
         /// </summary>
         /// <param name="some_another_group">Группа</param>
-        /// <returns></returns>
+        /// <returns>System.Int32.</returns>
         public int CompareTo(Group some_another_group) // реализация интерфейса
         {
             if (this.group.Count > some_another_group.group.Count) return 1;
@@ -44,7 +57,7 @@ namespace DZClasses
         /// <summary>
         /// Не полная копия
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Group.</returns>
         public Group ShallowClone() // поверхностная копия
         {
             return (Group)this.MemberwiseClone();
@@ -53,7 +66,7 @@ namespace DZClasses
         /// <summary>
         /// Полная копия
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Новый объект, являющийся копией этого экземпляра.</returns>
         public object Clone() // пользовательская копия
         {
             return new Group(this.group,this.NameOFCourse,this.Groupspecialization,this.NumberOFCourse);
@@ -62,9 +75,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения
         /// </summary>
-        /// <param name="obj1">Объекст сравнения </param>
+        /// <param name="obj1">Объекст сравнения</param>
         /// <param name="obj2">Объекст сравнения</param>
-        /// <returns></returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Group obj1, Group obj2)
         {
             if (obj1.group.Count == obj2.group.Count)
@@ -75,9 +88,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения
         /// </summary>
-        /// <param name="obj1">Объекст сравнения </param>
+        /// <param name="obj1">Объекст сравнения</param>
         /// <param name="obj2">Объекст сравнения</param>
-        /// <returns></returns>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Group obj1, Group obj2)
         {
             if (obj1.group.Count == obj2.group.Count)
@@ -89,7 +102,7 @@ namespace DZClasses
         /// Индексатор группы
         /// </summary>
         /// <param name="index">Индекс</param>
-        /// <returns></returns>
+        /// <returns>Student.</returns>
         public Student this[int index]
         {
             get { return group[index] as Student; }
@@ -128,6 +141,7 @@ namespace DZClasses
         /// <summary>
         /// Конструктор c параметром группы с оценками.
         /// </summary>
+        /// <param name="t">if set to <c>true</c> [t].</param>
         public Group(bool t)
         {
             Random random = new Random();
@@ -160,6 +174,8 @@ namespace DZClasses
         /// <summary>
         /// Конструктор c параметрами группы int - количество студентов, bool - с оценками.
         /// </summary>
+        /// <param name="t">if set to <c>true</c> [t].</param>
+        /// <param name="count">The count.</param>
         public Group(bool t,int count)
         {
             Random random = new Random();
@@ -234,6 +250,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Названия Курса.
         /// </summary>
+        /// <value>The name of course.</value>
         public string NameOFCourse
         {
             get { return NameOfCourse; }
@@ -243,6 +260,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Специализации Группы.
         /// </summary>
+        /// <value>The group specialization.</value>
         public string GroupSpecialization
         {
             get { return Groupspecialization; }
@@ -252,6 +270,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Номера Курса.
         /// </summary>
+        /// <value>The number of course.</value>
         public string NumberOFCourse
         {
             get { return NumberOfCourse; }
@@ -292,7 +311,7 @@ namespace DZClasses
         /// <summary>
         /// Возвращает количество студентов в группе
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Int32.</returns>
         public int ReturnCountStudents()
         {
             return group.Count;
@@ -365,7 +384,7 @@ namespace DZClasses
         /// <summary>
         /// Удаление студента с минимальным средним балом по домашкам
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Student.</returns>
         public Student ExpulsionOfFailingStudent()
         {
             // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл

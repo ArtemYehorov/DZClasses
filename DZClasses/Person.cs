@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +7,40 @@ using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 namespace DZClasses
 {
+    /// <summary>
+    /// Class Person.
+    /// </summary>
     internal class Person
     {
+        /// <summary>
+        /// The name
+        /// </summary>
         private string name;
+        /// <summary>
+        /// The surname
+        /// </summary>
         private string surname;
+        /// <summary>
+        /// The lastname
+        /// </summary>
         private string lastname;
+        /// <summary>
+        /// The age
+        /// </summary>
         protected DateTime age;
+        /// <summary>
+        /// The homeaddress
+        /// </summary>
         private string Homeaddress;
+        /// <summary>
+        /// The numberof phone
+        /// </summary>
         private string NumberofPhone;
 
         /// <summary>
         /// Свойство Name, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The name.</value>
         public string Name
         {
             get { return name; }
@@ -28,6 +50,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Surname, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The surname.</value>
         public string Surname
         {
             get { return surname; }
@@ -37,6 +60,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Lastname, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The lastname.</value>
         public string Lastname
         {
             get { return lastname; }
@@ -46,6 +70,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство HomeAddress, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The home address.</value>
         public string HomeAddress
         {
             get { return Homeaddress; }
@@ -55,6 +80,7 @@ namespace DZClasses
         /// <summary>
         /// Свойство Age, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The age.</value>
         public DateTime Age
         {
             get { return age; }
@@ -65,35 +91,51 @@ namespace DZClasses
         /// <summary>
         /// Свойство NumberOfPhone, возвращает и устанавливает значение
         /// </summary>
+        /// <value>The number of phone.</value>
         public string NumberOfPhone
         {
             get { return NumberofPhone; }
             set { NumberofPhone = value; }
         }
 
+        /// <summary>
+        /// The name list
+        /// </summary>
         protected string[] NameList = new string[22]
         {
             "Сергей","Артём","Назар","Андрей","Никита","Марк","Ярослав","Максим","Игорь","Давид","Владимир",
             "Анастасия","Ксения","Владислава","Валерия","Валентина","Ирина","Елена","Дарья","Алима","Инна","Анна"
         };
 
+        /// <summary>
+        /// The surname list
+        /// </summary>
         protected string[] SurnameList = new string[33]
         {
            "Опара","Егоров","Коваль","Соловьёв","Попов","Зеленский","Путин","Кузнецов","Петухов","Миронов", "Кузьмин", "Гусев", "Савчук", "Ильин", "Баранов", "Алексеев", "Борисов",
            "Егорова", "Коваль", "Соловьёва", "Попова", "Зеленская", "Путина", "Кузнецова", "Петухова", "Миронова", "Кузьмина", "Гусева", "Савчук", "Ильина", "Баранова", "Алексеева", "Борисова"
         };
 
+        /// <summary>
+        /// The lastname list
+        /// </summary>
         protected string[] LastnameList = new string[22]
         {
             "Сергеевич","Артемович","Назарович","Андреевич","Никитович","Маркович","Ярославович","Максимович","Игоревич","Давидович","Владимирович",
             "Сергеевна","Артемовна","Назаровна","Андреевна","Марковна","Максимовна" ,"Игоревна","Давидовна","Владимировна","Ярославовна","Никитична"
         };
 
+        /// <summary>
+        /// The address list
+        /// </summary>
         protected string[] AddressList = new string[10]
         {
             "Дерибасовская улица 12","Малая Арнаутская улица 42А","Большая Арнаутская улица 11","Ланжероновская улица 8","Пушкинская улица 23","Екатерининская улица А1","Приморский бульвар 56","Маразлиевская улица 2К","Французский бульвар Ф44","Греческая улица 66"
         };
 
+        /// <summary>
+        /// The number list
+        /// </summary>
         protected string[] NumberList = new string[35]
         {
             "+380929398000","+380929398001","+380929398002","+380929398003","+380929398004","+380929398005","+380929398006","+380929398007","+380929398008","+380929398009","+380929398010","+380929398011","+380929398012","+380639398813","+380922398914","+380925398015","+380929398236","+380929398917",

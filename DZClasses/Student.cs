@@ -1,4 +1,5 @@
 ﻿
+
 using DZClasses;
 using System;
 using System.Collections;
@@ -9,9 +10,21 @@ using System.Threading;
 using System.Threading.Tasks;
 using static System.Net.WebRequestMethods;
 
+/// <summary>
+/// Class LackOfGradesException.
+/// Implements the <see cref="ApplicationException" />
+/// </summary>
+/// <seealso cref="ApplicationException" />
 class LackOfGradesException : ApplicationException
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LackOfGradesException"/> class.
+    /// </summary>
     public LackOfGradesException() { }
+    /// <summary>
+    /// Initializes a new instance of the <see cref="LackOfGradesException"/> class.
+    /// </summary>
+    /// <param name="message">Сообщение, описывающее ошибку.</param>
     public LackOfGradesException(string message) : base(message) { }
 }
 
@@ -68,11 +81,16 @@ namespace DZClasses
         /// </summary>
         protected ArrayList TermPapers = new ArrayList();
 
-       // public delegate void StudentHandlerAvtomat(Person p, StudentEventAvtomat args);
-       // public delegate void StudentHandlerProspal(Person p, StudentEventProspal args);
-      //  public event StudentHandlerAvtomat Avtomat;
+        // public delegate void StudentHandlerAvtomat(Person p, StudentEventAvtomat args);
+        // public delegate void StudentHandlerProspal(Person p, StudentEventProspal args);
+        //  public event StudentHandlerAvtomat Avtomat;
         //public event StudentHandlerProspal WerentInPairs;
 
+        /// <summary>
+        /// Compares to.
+        /// </summary>
+        /// <param name="some_another_student">Some another student.</param>
+        /// <returns>System.Int32.</returns>
         public int CompareTo(Student some_another_student) // реализация интерфейса
         {
             if (this.GetAverageRateOffSet() > some_another_student.GetAverageRateOffSet()) return 1; 
@@ -82,7 +100,7 @@ namespace DZClasses
         /// <summary>
         /// Поверхностная копия - не идеальное копирование
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Student.</returns>
         public Student ShallowClone() // поверхностная копия
         {
             return (Student)this.MemberwiseClone();
@@ -91,7 +109,7 @@ namespace DZClasses
         /// <summary>
         /// Пользовательская копия - полностью копирует обьект
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Новый объект, являющийся копией этого экземпляра.</returns>
         public object Clone() // пользовательская копия
         {
             return new Student(this.Name, this.Surname, this.Lastname, this.Age, this.HomeAddress, this.NumberOfPhone, this.OffSet, this.Exams, this.TermPapers);
@@ -100,9 +118,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj1">Первый обьект сравнения</param>
+        /// <param name="obj2">Второй обьект сравнения</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator ==(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateOffSet() == obj2.GetAverageRateOffSet() && obj1.Name == obj2.Name)
@@ -113,9 +131,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj1">Первый обьект сравнения</param>
+        /// <param name="obj2">Второй обьект сравнения</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator !=(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateOffSet() != obj2.GetAverageRateOffSet())
@@ -126,9 +144,8 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj">The object.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator false(Student obj)
         {
             if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
@@ -140,9 +157,8 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj">The object.</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator true(Student obj)
         {
             if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
@@ -153,9 +169,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj1">Первый обьект сравнения</param>
+        /// <param name="obj2">Второй обьект сравнения</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator >(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
@@ -168,9 +184,9 @@ namespace DZClasses
         /// <summary>
         /// Оператор сравнения - сравнивает обьекты
         /// </summary>
-        /// <param name="obj1"> Первый обьект сравнения </param>
-        /// <param name="obj2">Второй обьект сравнения </param>
-        /// <returns></returns>
+        /// <param name="obj1">Первый обьект сравнения</param>
+        /// <param name="obj2">Второй обьект сравнения</param>
+        /// <returns>The result of the operator.</returns>
         public static bool operator <(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
@@ -185,8 +201,8 @@ namespace DZClasses
         /// </summary>
         /// <param name="r">Название блока оценок</param>
         /// <param name="t">Переданная оценка</param>
-        /// <returns></returns>
-        /// <exception cref="Exception"></exception>
+        /// <returns>System.Int32.</returns>
+        /// <exception cref="System.Exception">Ошибка! Не корректное название оценки</exception>
         public int this[string r, int t]
         {
             get 
@@ -233,6 +249,7 @@ namespace DZClasses
         /// Добавить оценку за зачёт.
         /// </summary>
         /// <param name="number">Оценка зачёта</param>
+        /// <exception cref="System.Exception">Оценка не может быть меньше одного или больше двенадцати!</exception>
         public void AddOffSet(int number)
         {
             //if (Avtomat != null)
@@ -262,6 +279,7 @@ namespace DZClasses
         /// Добавить оценку за ЭКЗАМЕН.
         /// </summary>
         /// <param name="number">Оценка экзамена</param>
+        /// <exception cref="System.Exception">Оценка не может быть меньше одного или больше двенадцати!</exception>
         public void AddExams(int number)
         {
             try
@@ -286,6 +304,7 @@ namespace DZClasses
         /// Добавить оценку за Курсовую работу
         /// </summary>
         /// <param name="number">Оценка Курсовой работы</param>
+        /// <exception cref="System.Exception">Оценка не может быть меньше одного или больше двенадцати!</exception>
         public void AddTermPapers(int number)
         {
             try
@@ -309,7 +328,7 @@ namespace DZClasses
         /// <summary>
         /// Конструктор без параметров с генерацией рандомного студента.
         /// </summary>
-        public  Student()
+        public Student()
         {
             Random rnd = new Random();
             try
@@ -409,7 +428,7 @@ namespace DZClasses
         /// <param name="age">Возраст студента</param>
         /// <param name="HomeAddress">Адресс студента</param>
         /// <param name="NumberOfPhone">Номер телефона студента</param>
-        /// <param name="OS">Лист домашних задания/зачётов </param>
+        /// <param name="OS">Лист домашних задания/зачётов</param>
         /// <param name="E">Лист экзаменов</param>
         /// <param name="TP">Лист лабораторных работ</param>
         public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone, ArrayList OS, ArrayList E, ArrayList TP)
@@ -435,6 +454,10 @@ namespace DZClasses
         /// <param name="NumberOfPhone">Номер телефона студента</param>
         public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone) : base(name, surname, lastname, age, HomeAddress, NumberOfPhone) {}
 
+        /// <summary>
+        /// Gets the average rate off set.
+        /// </summary>
+        /// <returns>System.Double.</returns>
         public double GetAverageRateOffSet()
         {
             double result = 0;
@@ -447,7 +470,7 @@ namespace DZClasses
         /// <summary>
         /// Возращает средний бал экзаменов
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public double GetAverageRateExams()
         {
             double result = 0;
@@ -461,7 +484,7 @@ namespace DZClasses
         /// <summary>
         /// Возвращает средний бал лабораторных работ
         /// </summary>
-        /// <returns></returns>
+        /// <returns>System.Double.</returns>
         public double GetAverageRateTermPapers()
         {
             double result = 0;
@@ -475,6 +498,7 @@ namespace DZClasses
         /// <summary>
         /// Выписывает студента с полной о нём информацией
         /// </summary>
+        /// <exception cref="global.LackOfGradesException">Оценки отсутвуют!\n</exception>
         public override void Print()
         {
             try

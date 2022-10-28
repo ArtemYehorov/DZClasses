@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +7,11 @@ using System.Threading.Tasks;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Class GoodStudent.
+    /// Implements the <see cref="DZClasses.Student" />
+    /// </summary>
+    /// <seealso cref="DZClasses.Student" />
     internal class GoodStudent : Student
     {
         /// <summary>
