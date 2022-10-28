@@ -8,6 +8,9 @@ namespace DZClasses
 {
     internal class AverageStudent : Student
     {
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
         public AverageStudent()
         {
             Random rnd = new Random();

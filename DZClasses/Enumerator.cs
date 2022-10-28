@@ -7,10 +7,13 @@ using System.Threading.Tasks;
 
 namespace DZClasses
 {
+    /// <summary>
+    /// Класс который позволяет пользоваться foreach
+    /// </summary>
     class MyEnumerator
     {
         ArrayList ar; // поле, которое сможет выдать доступ к коллекции в любой части класса-перечислителя
-
+        
         // конструктор нужен для того, чтобы подружить коллекцию с перечислителем, чтобы перечислитель "увидел" что он собирается перебирать
         public MyEnumerator(ArrayList ar)
         {

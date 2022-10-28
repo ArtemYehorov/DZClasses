@@ -20,11 +20,20 @@ namespace DZClasses
         private string Groupspecialization;
         private string NumberOfCourse;
 
+        /// <summary>
+        /// Инумератор
+        /// </summary>
+        /// <returns></returns>
         public MyEnumerator GetEnumerator()
         {
             return new MyEnumerator(group);
         }
 
+        /// <summary>
+        /// Реализация интерфейса для сортировки
+        /// </summary>
+        /// <param name="some_another_group">Группа</param>
+        /// <returns></returns>
         public int CompareTo(Group some_another_group) // реализация интерфейса
         {
             if (this.group.Count > some_another_group.group.Count) return 1;
@@ -32,15 +41,30 @@ namespace DZClasses
             return 0;
         }
 
+        /// <summary>
+        /// Не полная копия
+        /// </summary>
+        /// <returns></returns>
         public Group ShallowClone() // поверхностная копия
         {
             return (Group)this.MemberwiseClone();
         }
 
+        /// <summary>
+        /// Полная копия
+        /// </summary>
+        /// <returns></returns>
         public object Clone() // пользовательская копия
         {
             return new Group(this.group,this.NameOFCourse,this.Groupspecialization,this.NumberOFCourse);
         }
+
+        /// <summary>
+        /// Оператор сравнения
+        /// </summary>
+        /// <param name="obj1">Объекст сравнения </param>
+        /// <param name="obj2">Объекст сравнения</param>
+        /// <returns></returns>
         public static bool operator ==(Group obj1, Group obj2)
         {
             if (obj1.group.Count == obj2.group.Count)
@@ -48,6 +72,12 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения
+        /// </summary>
+        /// <param name="obj1">Объекст сравнения </param>
+        /// <param name="obj2">Объекст сравнения</param>
+        /// <returns></returns>
         public static bool operator !=(Group obj1, Group obj2)
         {
             if (obj1.group.Count == obj2.group.Count)
@@ -55,12 +85,24 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Индексатор группы
+        /// </summary>
+        /// <param name="index">Индекс</param>
+        /// <returns></returns>
         public Student this[int index]
         {
             get { return group[index] as Student; }
             set { group[index] = value; }
         }
 
+        /// <summary>
+        /// Конструктор с параметрами
+        /// </summary>
+        /// <param name="g">Лист студентов</param>
+        /// <param name="NameC">Название курса</param>
+        /// <param name="Cpes">Специализация группы</param>
+        /// <param name="NumberC">Номер курса</param>
         public Group(ArrayList g,string NameC,string Cpes,string NumberC)
         {
             this.group = g;
@@ -232,6 +274,10 @@ namespace DZClasses
             }
         }
 
+        /// <summary>
+        /// Удаляет студента по индексу
+        /// </summary>
+        /// <param name="index">Индекс</param>
         public void RemoveStudent(int index)
         {
             for (int i = 0; i < group.Count; i++)
@@ -243,16 +289,29 @@ namespace DZClasses
             }
         }
 
+        /// <summary>
+        /// Возвращает количество студентов в группе
+        /// </summary>
+        /// <returns></returns>
         public int ReturnCountStudents()
         {
             return group.Count;
         }
 
+        /// <summary>
+        /// Добавляет студента в группу
+        /// </summary>
+        /// <param name="pe">Студент</param>
         public void AddStudent(Student pe)
         {
             group.Add(pe);
         }
 
+        /// <summary>
+        /// Добавляет студента в группу по индексу
+        /// </summary>
+        /// <param name="pe">Студент</param>
+        /// <param name="index">Индекс</param>
         public void AddStudent(Student pe, int index)
         {
             if (index < 0 || index > group.Count)
@@ -303,6 +362,10 @@ namespace DZClasses
 
         //}
 
+        /// <summary>
+        /// Удаление студента с минимальным средним балом по домашкам
+        /// </summary>
+        /// <returns></returns>
         public Student ExpulsionOfFailingStudent()
         {
             // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл

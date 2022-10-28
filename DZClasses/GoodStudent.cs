@@ -8,6 +8,9 @@ namespace DZClasses
 {
     internal class GoodStudent : Student
     {
+        /// <summary>
+        /// Конструктор без параметров
+        /// </summary>
         public GoodStudent()
         {
             Random rnd = new Random();

@@ -1,4 +1,5 @@
 ﻿
+using DZClasses;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,36 @@ class LackOfGradesException : ApplicationException
     public LackOfGradesException(string message) : base(message) { }
 }
 
+//internal class StudentEventProspal
+//{
+//    public string ReasonAbsence { get; set; }
+
+//    public StudentEventProspal(string r)
+//    {
+//        this.ReasonAbsence = r;
+//    }
+
+//    public string ReasonForAbsence()
+//    {
+//        Console.WriteLine(ReasonAbsence);
+//        return ReasonAbsence;
+//    }
+//}
+
+//internal class StudentEventAvtomat
+//{
+//    public int Exam { get; set; }
+//    public StudentEventAvtomat(int e)
+//    {
+//        this.Exam = e;
+//    }
+
+//    public int GetAvtomat()
+//    {
+//        return Exam;
+//    }
+
+//}
 
 namespace DZClasses
 {
@@ -22,9 +53,25 @@ namespace DZClasses
     /// </summary>
     internal class Student : Person, ICloneable, IComparable<Student>
     {
+        /// <summary>
+        /// Лист Домашек/Зачётов
+        /// </summary>
         protected ArrayList OffSet = new ArrayList();
+
+        /// <summary>
+        /// Лист Экзаменов
+        /// </summary>
         protected ArrayList Exams = new ArrayList();
+
+        /// <summary>
+        /// Лист Лабораторных работ
+        /// </summary>
         protected ArrayList TermPapers = new ArrayList();
+
+       // public delegate void StudentHandlerAvtomat(Person p, StudentEventAvtomat args);
+       // public delegate void StudentHandlerProspal(Person p, StudentEventProspal args);
+      //  public event StudentHandlerAvtomat Avtomat;
+        //public event StudentHandlerProspal WerentInPairs;
 
         public int CompareTo(Student some_another_student) // реализация интерфейса
         {
@@ -32,17 +79,30 @@ namespace DZClasses
             if (this.GetAverageRateOffSet() < some_another_student.GetAverageRateOffSet()) return -1;
             return 0; 
         }
-
+        /// <summary>
+        /// Поверхностная копия - не идеальное копирование
+        /// </summary>
+        /// <returns></returns>
         public Student ShallowClone() // поверхностная копия
         {
             return (Student)this.MemberwiseClone();
         }
 
+        /// <summary>
+        /// Пользовательская копия - полностью копирует обьект
+        /// </summary>
+        /// <returns></returns>
         public object Clone() // пользовательская копия
         {
             return new Student(this.Name, this.Surname, this.Lastname, this.Age, this.HomeAddress, this.NumberOfPhone, this.OffSet, this.Exams, this.TermPapers);
         }
 
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator ==(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateOffSet() == obj2.GetAverageRateOffSet() && obj1.Name == obj2.Name)
@@ -50,6 +110,12 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator !=(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateOffSet() != obj2.GetAverageRateOffSet())
@@ -57,6 +123,12 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator false(Student obj)
         {
             if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
@@ -65,6 +137,12 @@ namespace DZClasses
         }
 
         // Обязательно перегружаем оператор true
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator true(Student obj)
         {
             if (obj.OffSet.Count <= 0 && obj.Exams.Count <= 0 && obj.TermPapers.Count <= 0)
@@ -72,6 +150,12 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator >(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
@@ -81,6 +165,12 @@ namespace DZClasses
             return false;
         }
 
+        /// <summary>
+        /// Оператор сравнения - сравнивает обьекты
+        /// </summary>
+        /// <param name="obj1"> Первый обьект сравнения </param>
+        /// <param name="obj2">Второй обьект сравнения </param>
+        /// <returns></returns>
         public static bool operator <(Student obj1, Student obj2)
         {
             if (obj1.GetAverageRateExams() + obj1.GetAverageRateTermPapers() + obj1.GetAverageRateOffSet() > obj2.GetAverageRateExams() + obj2.GetAverageRateTermPapers() + obj2.GetAverageRateOffSet())
@@ -90,6 +180,13 @@ namespace DZClasses
             return true;
         }
 
+        /// <summary>
+        /// Индексатор
+        /// </summary>
+        /// <param name="r">Название блока оценок</param>
+        /// <param name="t">Переданная оценка</param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public int this[string r, int t]
         {
             get 
@@ -138,6 +235,11 @@ namespace DZClasses
         /// <param name="number">Оценка зачёта</param>
         public void AddOffSet(int number)
         {
+            //if (Avtomat != null)
+            //{
+            //    Avtomat(this, new StudentEventAvtomat((int)GetAverageRateOffSet()));
+            //}
+
             try
             {
                 if (number >= 1 && number <= 12)
@@ -298,6 +400,18 @@ namespace DZClasses
         /// <param name="age">Возраст студента</param>
         public Student(string name, string surname, string lastname, DateTime age) : base(name, surname, lastname, age) {}
 
+        /// <summary>
+        /// Конструктор с параметрами и Листами оценок
+        /// </summary>
+        /// <param name="name">Имя студента</param>
+        /// <param name="surname">Фамилия студента</param>
+        /// <param name="lastname">Отчество студента</param>
+        /// <param name="age">Возраст студента</param>
+        /// <param name="HomeAddress">Адресс студента</param>
+        /// <param name="NumberOfPhone">Номер телефона студента</param>
+        /// <param name="OS">Лист домашних задания/зачётов </param>
+        /// <param name="E">Лист экзаменов</param>
+        /// <param name="TP">Лист лабораторных работ</param>
         public Student(string name, string surname, string lastname, DateTime age, string HomeAddress, string NumberOfPhone, ArrayList OS, ArrayList E, ArrayList TP)
         {
             this.Name = name;
@@ -330,7 +444,10 @@ namespace DZClasses
             }
             return result / OffSet.Count;
         }
-
+        /// <summary>
+        /// Возращает средний бал экзаменов
+        /// </summary>
+        /// <returns></returns>
         public double GetAverageRateExams()
         {
             double result = 0;
@@ -341,6 +458,10 @@ namespace DZClasses
             return result / Exams.Count;
         }
 
+        /// <summary>
+        /// Возвращает средний бал лабораторных работ
+        /// </summary>
+        /// <returns></returns>
         public double GetAverageRateTermPapers()
         {
             double result = 0;
@@ -351,6 +472,9 @@ namespace DZClasses
             return result / TermPapers.Count;
         }
 
+        /// <summary>
+        /// Выписывает студента с полной о нём информацией
+        /// </summary>
         public override void Print()
         {
             try
