@@ -25,12 +25,27 @@ namespace DZClasses
         static void Main()
         {
             //Group g = new Group(true, 3);
-            
+            //g.Print();
             Student a = new AverageStudent();
-           // a.Avtomat += AvtomatExams;
-           
-            Student b = new BadStudent();
-            Student c = new GoodStudent();
+            Group e = new Group(true,3);
+            // a.Avtomat += AvtomatExams;
+            FileSaver r = new FileSaver();
+            r.SaveStudent(a);
+            r.SaveGroup(e);
+            //Student bq = new BadStudent();
+            //Student bw = new BadStudent();
+            //Student be = new BadStudent();
+            //Student br = new BadStudent();
+
+            //Student c = new GoodStudent();
+            //g.AddStudent(a);
+            //g.AddStudent(c);
+            //g.AddStudent(bq);
+            //g.AddStudent(bw);
+            //g.AddStudent(be);
+            //g.AddStudent(br);
+
+            //g.Print();
             Console.ReadLine();
 
         }

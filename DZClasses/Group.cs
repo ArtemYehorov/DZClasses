@@ -1,8 +1,10 @@
 ﻿
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
@@ -14,12 +16,14 @@ namespace DZClasses
     /// <summary>
     /// Это группа для массива студентов.
     /// </summary>
+    [Author]
     internal class Group : ICloneable, IComparable<Group>
     {
         /// <summary>
         /// The group
         /// </summary>
-        private ArrayList group = new ArrayList();
+        [JsonProperty]
+        private SortedSet<Student> group = new SortedSet<Student>();
         /// <summary>
         /// The name of course
         /// </summary>
@@ -69,7 +73,7 @@ namespace DZClasses
         /// <returns>Новый объект, являющийся копией этого экземпляра.</returns>
         public object Clone() // пользовательская копия
         {
-            return new Group(this.group,this.NameOFCourse,this.Groupspecialization,this.NumberOFCourse);
+            return new Group(group,this.NameOFCourse,this.Groupspecialization,this.NumberOFCourse);
         }
 
         /// <summary>
@@ -105,8 +109,7 @@ namespace DZClasses
         /// <returns>Student.</returns>
         public Student this[int index]
         {
-            get { return group[index] as Student; }
-            set { group[index] = value; }
+            get { return group.ElementAt<Student>(index); }
         }
 
         /// <summary>
@@ -116,7 +119,7 @@ namespace DZClasses
         /// <param name="NameC">Название курса</param>
         /// <param name="Cpes">Специализация группы</param>
         /// <param name="NumberC">Номер курса</param>
-        public Group(ArrayList g,string NameC,string Cpes,string NumberC)
+        public Group(SortedSet<Student> g,string NameC,string Cpes,string NumberC)
         {
             this.group = g;
             NameOFCourse = NameC;
@@ -236,11 +239,11 @@ namespace DZClasses
         /// конструктор, создаёт группу по указанному массиву студентов.
         /// </summary>
         /// <param name="group">Массив студентов</param>
-        public Group(ArrayList group)
+        public Group(SortedSet<Student> group)
         {
             for (int i = 0; i < group.Count; i++)
             {
-                this.group.Add(group[i]);
+                this.group.Add(group.ElementAt<Student>(i));
             }
             NameOFCourse = "PU111";
             NumberOFCourse = "111";
@@ -286,9 +289,9 @@ namespace DZClasses
         {
             for (int i = 0; i < group.Count; i++)
             {
-                if ((group[i] as Student).Name == name && (group[i] as Student).Surname == surname)
+                if ((group.ElementAt<Student>(i)).Name == name && (group.ElementAt<Student>(i)).Surname == surname)
                 {
-                    group.Remove(i);
+                    group.Remove(group.ElementAt<Student>(i));
                 }
             }
         }
@@ -303,7 +306,7 @@ namespace DZClasses
             {
                 if (i == index)
                 {
-                    group.RemoveAt(i);
+                    group.Remove(group.ElementAt<Student>(i));
                 }
             }
         }
@@ -338,7 +341,7 @@ namespace DZClasses
                 index = 0;
             }
             group.Add(pe);
-            group.Reverse(index, group.Count);
+            group.Reverse();
             
         }
 
@@ -352,10 +355,10 @@ namespace DZClasses
         {
             for (int i = 0; i < group.Count; i++)
             {
-                if ((group[i] as Student).Name == name && (group[i] as Student).Surname == surname)
+                if ((group.ElementAt<Student>(i)).Name == name && (group.ElementAt<Student>(i)).Surname == surname)
                 {
-                    g.group.Add(this.group[i]);
-                    this.group.Remove(i);
+                    g.group.Add(this.group.ElementAt<Student>(i));
+                    this.group.Remove(this.group.ElementAt<Student>(i));
                 }
             }
         }
@@ -372,7 +375,7 @@ namespace DZClasses
             for (int i = 0; i < group.Count; i++)
             {
                 Console.Write(i+1 + "# ");
-                (group[i] as Student).Print();
+                group.ElementAt<Student>(i).Print();
             }
         }
 
@@ -388,16 +391,16 @@ namespace DZClasses
         public Student ExpulsionOfFailingStudent()
         {
             // делаем предположение, что у первого поавшегося студента группы - минимальнй средний балл
-            double min_average = (group[0] as Student).GetAverageRateOffSet();
+            double min_average = group.First().GetAverageRateOffSet();
             int current_index = 0; // на каком номере студента из группы мы находимся сейчас (перебор начинается с начала группы)
-            Student bad = (group[0] as Student); // ссылка на студента у которого средний балл - минимальный
+            Student bad = group.First(); // ссылка на студента у которого средний балл - минимальный
             for (int i = 0; i < group.Count; i++)
             {
-                double current_avg = (group[i] as Student).GetAverageRateOffSet();
+                double current_avg = group.First().GetAverageRateOffSet();
                 if (current_avg < min_average)
                 {
                     min_average = current_avg;
-                    bad = (group[i] as Student);
+                    bad = group.ElementAt<Student>(i);
                 }
                 current_index++;
             }

@@ -28,14 +28,14 @@ namespace DZClasses
         /// <summary>
         /// The ar
         /// </summary>
-        ArrayList ar; // поле, которое сможет выдать доступ к коллекции в любой части класса-перечислителя
+        SortedSet<Student> ar; // поле, которое сможет выдать доступ к коллекции в любой части класса-перечислителя
 
         // конструктор нужен для того, чтобы подружить коллекцию с перечислителем, чтобы перечислитель "увидел" что он собирается перебирать
         /// <summary>
         /// Initializes a new instance of the <see cref="MyEnumerator"/> class.
         /// </summary>
         /// <param name="ar">The ar.</param>
-        public MyEnumerator(ArrayList ar)
+        public MyEnumerator(SortedSet<Student> ar)
         {
             this.ar = ar;
         }
@@ -64,7 +64,7 @@ namespace DZClasses
             if (index >= ar.Count)
                 return false;
 
-            Current = ar[index++]; // 5 15 47 28 37
+            Current = ar.ElementAt<Student>(index++); // 5 15 47 28 37
             return true;
         }
 

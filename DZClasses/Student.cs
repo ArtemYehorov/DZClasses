@@ -1,6 +1,7 @@
 ﻿
 
 using DZClasses;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -64,21 +65,25 @@ namespace DZClasses
     /// <summary>
     /// Класс студента для группы.
     /// </summary>
+    [Author]
     internal class Student : Person, ICloneable, IComparable<Student>
     {
         /// <summary>
         /// Лист Домашек/Зачётов
         /// </summary>
+        [JsonProperty]
         protected ArrayList OffSet = new ArrayList();
 
         /// <summary>
         /// Лист Экзаменов
         /// </summary>
+        [JsonProperty]
         protected ArrayList Exams = new ArrayList();
 
         /// <summary>
         /// Лист Лабораторных работ
         /// </summary>
+        [JsonProperty]
         protected ArrayList TermPapers = new ArrayList();
 
         // public delegate void StudentHandlerAvtomat(Person p, StudentEventAvtomat args);
